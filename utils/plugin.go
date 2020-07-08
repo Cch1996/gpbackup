@@ -51,6 +51,9 @@ func ReadPluginConfig(configFile string) (*PluginConfig, error) {
 	if config.ExecutablePath == "" {
 		return nil, errors.New("executablepath is required in config file")
 	}
+	if config.Options == nil {
+		return nil, errors.New("options are required in config file")
+	}
 	config.ExecutablePath = os.ExpandEnv(config.ExecutablePath)
 	err = ValidateFullPath(config.ExecutablePath)
 	if err != nil {
